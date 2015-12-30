@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res/com.example.CollegeApp">
+    <item
+            android:id="@+id/new_notification_generator"
+            android:title="generate notification"
+            app:showAsAction="never"/>
+    <item
+            android:id="@+id/log_out"
+            android:title="log out"
+            app:showAsAction="never"/>
+    <item android:id="@+id/delete_all_read"
+          android:icon="@android:drawable/ic_menu_delete"
+          android:title="Delete all"
+          app:showAsAction="never"/>
+</menu>

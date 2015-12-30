@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res/com.example.CollegeApp"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+>
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/notice_reader" android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+        <LinearLayout
+                android:id="@+id/notice_reader_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+            <TextView
+                    android:id="@+id/notice_header_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="Notice header text goes here"
+                    android:textSize="32dp" android:textStyle="bold">
+            </TextView>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="22 Jan. 1995, 7:30 am"
+                    android:id="@+id/date_time_text" android:textStyle="italic" android:layout_gravity="right"
+            />
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView2" android:src="@drawable/abc_list_divider_mtrl_alpha"
+                    android:layout_marginBottom="8dp"/>
+            <TextView
+                    android:id="@+id/notice_body_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="This this is the body pf some horrible notice that student are recieving on their modile phones due to this awesome app"
+                    android:textSize="24dp">
+            </TextView>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

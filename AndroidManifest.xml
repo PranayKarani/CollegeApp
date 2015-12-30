@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.example.CollegeApp"
+          android:versionCode="1"
+          android:versionName="1.0">
+    <uses-sdk android:minSdkVersion="14"/>
+    <application android:label="@string/app_name"
+                 android:theme="@style/Theme.AppCompat.NoActionBar"
+                 android:icon="@drawable/ic_launcher">
+
+        <activity android:name=".ASignIn"
+                  android:label="@string/app_name"
+                  android:screenOrientation="portrait"
+                  android:noHistory="true"
+                  android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+
+        <activity android:name="AMain"
+                  android:label="Home"
+                  android:screenOrientation="portrait"/>
+
+        <activity android:name=".AMarksDetails"
+                  android:label="Marksheet"
+                  android:screenOrientation="portrait"/>
+
+        <activity android:name=".AAttendanceDetails"
+                  android:label="Attendance details"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".ANotice" android:label="Notice"/>
+
+        <service android:name=".services.SNotice"/>
+
+    </application>
+</manifest>
