@@ -1,16 +1,14 @@
 package com.example.CollegeApp.fragments;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,14 +18,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.CollegeApp.AMain;
 import com.example.CollegeApp.R;
-import com.example.CollegeApp.myUtilities.Time;
 import com.example.CollegeApp.others.Subject;
 import com.example.CollegeApp.timetable.Monday;
+import com.example.CollegeApp.timetable.Saturday;
 import com.example.CollegeApp.timetable.Tuesday;
 import com.example.CollegeApp.timetable.Wednesday;
 import com.example.CollegeApp.timetable.WeekDay;
-
-import java.util.Calendar;
 
 public class FTimeTable extends Fragment {
 
@@ -40,6 +36,7 @@ public class FTimeTable extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         AMain.CURRENT_FRAGMENT = "FTimeTable";// CAUTION! particluar activity dependency
+
     }
 
     @Override
@@ -51,7 +48,7 @@ public class FTimeTable extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        adapter = new MyAdapter(getActivity().getSupportFragmentManager());
+        adapter = new MyAdapter(getChildFragmentManager());
 
         viewPager = (ViewPager) getActivity().findViewById(R.id.time_table_pager);
         viewPager.setAdapter(adapter);
@@ -63,10 +60,12 @@ public class FTimeTable extends Fragment {
 
         public MyAdapter(FragmentManager fm) {
             super(fm);
+
         }
 
         @Override
         public Fragment getItem(int i) {
+            Log.d("log", i + ",");
             return FTimeTableDay.newInstance(i);
         }
 
@@ -94,6 +93,7 @@ public class FTimeTable extends Fragment {
                     return "Sunday";
             }
         }
+
     }
 
     public static class FTimeTableDay extends Fragment {
@@ -129,22 +129,15 @@ public class FTimeTable extends Fragment {
             // filling the layout
             for (int i = 0; i < dayToday.subjectsToday.length; i++) {
 
+                if (dayToday.subjectsToday[i] != null) {
 
-                // if today is the lecture's actual day and ...
+                    LinearLayout layout = (LinearLayout) v.findViewById(R.id.tt_holder);
+                    CardView lec_cell = inflateLectureCell(dayToday.subjectsToday[i]);
+                    lec_cell.setCardBackgroundColor(getResources().getColor(dayToday.subjectsToday[i].getColor()));
+                    layout.addView(lec_cell);
+                    layout.addView(getActivity().getLayoutInflater().inflate(R.layout.x_space, null));
 
-
-                    if (dayToday.subjectsToday[i] != null) {
-
-
-                        // show the lecture on home screen
-                        LinearLayout layout = (LinearLayout) v.findViewById(R.id.tt_holder);
-                        CardView lec_cell = inflateLectureCell(dayToday.subjectsToday[i]);
-                        lec_cell.setCardBackgroundColor(getResources().getColor(dayToday.subjectsToday[i].getColor()));
-                        layout.addView(lec_cell);
-                        layout.addView(getActivity().getLayoutInflater().inflate(R.layout.x_space, null));
-
-
-                    }
+                }
 
             }
 
@@ -152,17 +145,28 @@ public class FTimeTable extends Fragment {
         }
 
         private WeekDay getSelectedDay() {
+            WeekDay d;
+
             switch (ID) {
                 case 0:
-                    return new Monday();
+                    d = new Monday();
+                    break;
                 case 1:
-                    return new Tuesday();
+                    d = new Tuesday();
+                    break;
                 case 2:
-                    return new Wednesday();
+                    d = new Wednesday();
+                    break;
                 // TODO add new days
+                case 5:
+                    d = new Saturday();
+                    break;
                 default:
-                    return new Monday();
+                    d = new Monday();
+                    break;
             }
+
+            return d;
 
         }
 
@@ -187,6 +191,18 @@ public class FTimeTable extends Fragment {
             // lecture name
             TextView teachernameTV = (TextView) lf.findViewById(R.id.tt_teacher);
             teachernameTV.setText(s.teacher);
+
+            String d;
+            if (s.duration.minute > 0) {
+                if (s.duration.hour > 0) {
+                    d = s.duration.hour + "h " + s.duration.minute + "m";
+                } else {
+                    d = s.duration.minute + "m";
+                }
+            } else {
+                d = s.duration.hour + "h";
+            }
+            ((TextView) lf.findViewById(R.id.tt_dur)).setText("(" + d + ")");
 
             lf.setOnClickListener(new OnClickListener() {
                 @Override

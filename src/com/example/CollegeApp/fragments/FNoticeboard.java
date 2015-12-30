@@ -31,11 +31,7 @@ public class FNoticeboard extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         AMain.CURRENT_FRAGMENT = "FNoticeboard";// CAUTION! particluar activity dependency
-    }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override

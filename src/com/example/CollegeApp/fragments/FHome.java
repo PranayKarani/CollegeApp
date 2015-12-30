@@ -1,15 +1,12 @@
 package com.example.CollegeApp.fragments;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.CollegeApp.AMain;
-import com.example.CollegeApp.ANotice;
 import com.example.CollegeApp.R;
 import com.example.CollegeApp.database.DatabaseHelper;
 import com.example.CollegeApp.database.TNotice;
@@ -79,13 +75,15 @@ public class FHome extends Fragment {
 
                     }
                 }
-            } else { // if not, show all lectures
+            } else { // if not, show all lectures irrespective of timings
 
                 if (dayToday.subjectsToday[i] != null) {
 
                     // show the lecture on home screen
                     LinearLayout layout = (LinearLayout) getActivity().findViewById(R.id.schedule_container);
-                    layout.addView(inflateLectureCell(dayToday.subjectsToday[i]));
+                    CardView lec_cell = inflateLectureCell(dayToday.subjectsToday[i]);
+                    lec_cell.setCardBackgroundColor(getResources().getColor(dayToday.subjectsToday[i].getColor()));
+                    layout.addView(lec_cell);
                     layout.addView(getActivity().getLayoutInflater().inflate(R.layout.x_space, null));
 
                 }
@@ -181,7 +179,13 @@ public class FHome extends Fragment {
                 break;
 
             case Calendar.WEDNESDAY:
-                today = new Wednesday();
+                Wednesday wed = new Wednesday();
+                if (Time.getAbsoluteTimeNow() > wed.getLastSubjectToday().endTime.absoluteTime()) {
+                    ((TextView) getActivity().findViewById(R.id.schedule_header)).setText("Tomorrow's schedule");
+                    today = new Monday();// change to thrusday
+                } else {
+                    today = wed;
+                }
                 break;
 
             case Calendar.THURSDAY:
@@ -249,7 +253,7 @@ public class FHome extends Fragment {
 
         }
 
-        getActivity().findViewById(R.id.notification_container).setVisibility(unread == 0? View.GONE : View.VISIBLE);
+        getActivity().findViewById(R.id.notification_container).setVisibility(unread == 0 ? View.GONE : View.VISIBLE);
 
         c.close();
         db.close();

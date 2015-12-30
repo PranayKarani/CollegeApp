@@ -1,29 +1,20 @@
 package com.example.CollegeApp;
 
 import android.app.Dialog;
-import android.app.FragmentManager;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.database.Cursor;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.NotificationCompat;
-import android.support.v7.app.NotificationCompat.Builder;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,19 +23,13 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RemoteViews;
-import android.widget.Toast;
 import com.example.CollegeApp.database.DatabaseHelper;
 import com.example.CollegeApp.database.TNotice;
 import com.example.CollegeApp.fragments.FHome;
 import com.example.CollegeApp.fragments.FMyDetails;
 import com.example.CollegeApp.fragments.FNoticeboard;
 import com.example.CollegeApp.fragments.FTimeTable;
-import com.example.CollegeApp.myUtilities.Time;
 import com.example.CollegeApp.services.SNotice;
-
-import java.util.Calendar;
-import java.util.Random;
 
 public class AMain extends AppCompatActivity {
 
@@ -81,7 +66,6 @@ public class AMain extends AppCompatActivity {
                 break;
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, open_fragment).commit();
-
 
         drawerListNames = getResources().getStringArray(R.array.drawer_list);
 
@@ -142,7 +126,6 @@ public class AMain extends AppCompatActivity {
                 }
 
                 ft.replace(R.id.fragment_container, f);
-//                ft.addToBackStack(null);
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 ft.commit();
 
@@ -246,6 +229,9 @@ public class AMain extends AppCompatActivity {
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             ft.commit();
             invalidateOptionsMenu();
+//            if (getSupportActionBar() != null) {
+//                getSupportActionBar().setTitle("Home");
+//            }
         }
 
     }

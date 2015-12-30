@@ -1,11 +1,10 @@
 package com.example.CollegeApp.fragments;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -28,13 +27,13 @@ public class FMyDetails extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         AMain.CURRENT_FRAGMENT = "FMyDetails";// CAUTION! particluar activity dependency
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         msv = (MySurfaceView) getActivity().findViewById(R.id.surfaceView);
-
         return inflater.inflate(R.layout.f_mydetails, container, false);
     }
 

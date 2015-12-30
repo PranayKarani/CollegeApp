@@ -21,14 +21,14 @@
                   android:layout_height="wrap_content"
                   android:textSize="36dp"
                   android:gravity="right"
-                  android:text="12:35" android:textColor="#1e1e1e"/>
+                  android:text="12:35" android:textColor="#3d3d3d"/>
         <TextView android:id="@+id/default_lec_name"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:textSize="36dp"
                   android:text="Q. T."
                   android:paddingLeft="25dp"
-                  android:paddingBottom="5dp" android:textColor="#1e1e1e"/>
+                  android:paddingBottom="5dp" android:textColor="#3d3d3d"/>
 
     </LinearLayout>
 
