@@ -14,14 +14,11 @@ import com.example.CollegeApp.AAttendanceDetails;
 import com.example.CollegeApp.AMain;
 import com.example.CollegeApp.AMarksDetails;
 import com.example.CollegeApp.R;
-import com.example.CollegeApp.myUtilities.MySurfaceView;
 import com.example.CollegeApp.others.Student;
 
 public class FMyDetails extends Fragment {
 
     public final static int ID = 1;
-
-    MySurfaceView msv;
 
     @Override
     public void onAttach(Context context) {
@@ -33,7 +30,6 @@ public class FMyDetails extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        msv = (MySurfaceView) getActivity().findViewById(R.id.surfaceView);
         return inflater.inflate(R.layout.f_mydetails, container, false);
     }
 
@@ -55,7 +51,7 @@ public class FMyDetails extends Fragment {
         });
 
         Button marks = (Button) getActivity().findViewById(R.id.marks_button);
-        marks.setText("Total Marks: " + Student.TOTALMARKS + "\n(replace with graph)");
+        marks.setText("Total Marks: " + Student.TOTALMARKS);
         marks.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

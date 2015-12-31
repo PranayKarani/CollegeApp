@@ -3,7 +3,6 @@ package com.example.CollegeApp;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.util.Log;
 import com.example.CollegeApp.fragments.FSemMarksheet;
 import com.example.CollegeApp.others.Student;
 
@@ -31,7 +30,6 @@ public class AMarksDetails extends Activity {
         FSemMarksheet fsm = new FSemMarksheet();
         Bundle b = new Bundle();
         b.putInt("selected_sem", sem);
-        Log.d("log", "selected sem: " + sem);
         fsm.setArguments(b);
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.selected_sem_marks_container,fsm);
