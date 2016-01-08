@@ -31,10 +31,12 @@ public class SNotice extends IntentService {
             try{
                 wait(10000);
                 generateNotice(
-                        "Results of SYBSc.I.T announced",
-                        "Results of SYBSc.I.T are out on the noticeboards and on will be recieved to students using this awesome app immediately." +
-                                " So children download this awesome app and make your life a bit easy. iudhg s hf lf dfld l lkf laj " +
-                                "kd kjsdkj kgnjdksgklsgnneldmnlasfl jaja;smfwof;amsfalslaksjf");
+                        "Awesome Notice header text",
+                        "Notice body, yaydya khf kauj aka yada yaday ayda aj blah blhab blhab lhab lha lajslfsflasifjsja" +
+                                "blah blhab lhab lhab lah bla hlahf la lsl  blha blah blha blha blah blah balh b lahld hksh sakhfsh" +
+                                "blah blhab lhab lhab lah bla hlahf la lsl  blha blah blha blha blah blah balh b lahld hksh sakhfsh" +
+                                "blah blhab lhab lhab lah bla hlahf la lsl  blha blah blha blha blah blah balh b lahld hksh sakhfsh" +
+                                "blah blhab lhab lhab lah bla hlahf la lsl  blha blah blha blha blah blah balh b lahld hksh sakhfsh");
             } catch(Exception e){
 
             }
