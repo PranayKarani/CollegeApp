@@ -23,6 +23,10 @@ public class ASignIn extends Activity {
 
     public static final String filename = "stud_data";
 
+    boolean demo = true;
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +40,25 @@ public class ASignIn extends Activity {
         setContentView(R.layout.a_signin);
 
         dbh = new DatabaseHelper(this);
+
+        // insert database entries here...
+
+        demo = readDemoData();
+        if (demo) {
+            try {
+                SQLiteDatabase db = dbh.getWritableDatabase();
+                db.execSQL("INSERT INTO " + TStudent.table_name + " VALUES (102, 3, 'Mickey Mouse', 3, 1, 10, 10.3);");
+                db.execSQL("INSERT INTO " + TMarks.table_name + " VALUES (102, 83, 76, 80, 10);");
+                db.execSQL("INSERT INTO " + TAttendance.table_name + " VALUES (102, 80, 70, 80, 20);");
+                db.close();
+                Toast.makeText(this, "Demo row inserted.\nInsert: 102", Toast.LENGTH_LONG).show();
+            } catch (Exception e) {
+                demo = false;
+                Toast.makeText(this, "Catched!", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+        }
+        writeDemoData(demo);
 
     }
 
@@ -72,6 +95,19 @@ public class ASignIn extends Activity {
         c.close();
         db.close();
     }
+
+    void writeDemoData(boolean d) {
+        SharedPreferences sp = getSharedPreferences(filename, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putBoolean("demo", d);
+        editor.apply();
+    }
+
+    boolean readDemoData() {
+        SharedPreferences sp = getSharedPreferences(filename, Context.MODE_PRIVATE);
+        return sp.getBoolean("demo", true);
+    }
+
 
     void writeData() {
         SharedPreferences sp = getSharedPreferences(filename, Context.MODE_PRIVATE);
